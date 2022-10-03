@@ -1,4 +1,4 @@
-// import closeModals from "./closeModals";
+import { postData } from "../services/requests";
 
 const forms = () => {
     const form = document.querySelectorAll('form'),
@@ -17,15 +17,6 @@ const forms = () => {
     const path = {
         designer: 'assets/server.php',
         question: 'assets/question.php',
-    };
-
-    const postData = async (url, data) => {
-        let res = await fetch(url, {
-            method: "POST",
-            body: data,
-        });
-
-        return await res.text();
     };
 
     const clearInputs = () => {
@@ -95,7 +86,6 @@ const forms = () => {
                         item.style.display = 'block';
                         item.classList.remove('fadeOutUp');
                         item.classList.add('fadeInUp');
-                        // closeModals();
                     }, 2000);
                 });
         });
