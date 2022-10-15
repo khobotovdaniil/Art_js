@@ -4619,6 +4619,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_string_split__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_split__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _services_requests__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/requests */ "./src/js/services/requests.js");
+
 
 
 
@@ -4676,6 +4678,14 @@ var drop = function drop() {
       arr[0].length > 6 ? dots = '...' : dots = '.';
       var name = arr[0].substring(0, 6) + dots + arr[1];
       input.previousElementSibling.textContent = name;
+
+      if (!input.closest('.calc_form') && !input.closest('.popup-content')) {
+        var data = new FormData();
+        data.append('file', input.files[0]);
+        Object(_services_requests__WEBPACK_IMPORTED_MODULE_3__["postData"])('assets/server.php', data).then(function (res) {
+          console.log(res);
+        });
+      }
     });
   });
 };

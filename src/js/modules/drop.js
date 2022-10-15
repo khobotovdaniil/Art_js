@@ -1,3 +1,5 @@
+import { postData } from "../services/requests";
+
 const drop = () => {
     const fileInputs = document.querySelectorAll('[name="upload"]');
 
@@ -53,6 +55,17 @@ const drop = () => {
             arr[0].length > 6 ? dots = '...' : dots = '.';
             const name = arr[0].substring(0, 6) + dots + arr[1];
             input.previousElementSibling.textContent = name;
+
+            if (!input.closest('.calc_form') && !input.closest('.popup-content'))  {
+
+                var data = new FormData();
+                data.append('file', input.files[0]);
+
+                postData('assets/server.php', data)
+                    .then(res => {
+                        console.log(res);
+                    });
+            }
         });
     });
 };
